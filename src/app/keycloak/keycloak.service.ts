@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import Keycloak from 'keycloak-js';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,29 @@ export class KeycloakService {
 
   constructor() { }
 
+  private keyCloak :Keycloak | undefined;
+
+  get keyCloakFn(){
+    if(!this.keyCloak){
+      this.keyCloak=new Keycloak({
+        url:"http://localhost:8080/",
+        clientId:"my-app",
+        realm:"keycloak-learning"
+      });
+    }
+    return this.keyCloak;
+  }
+
   async init(){
-    console.log("initializing keycloack");
+    console.log("authenticationg user . . .");
+    const authenticated = await this.keyCloakFn?.init({
+      onLoad:"login-required"
+    });
+
+    if(authenticated){
+      console.log("user authenticated successfully . . .");
+    }
+
+
   }
 }
