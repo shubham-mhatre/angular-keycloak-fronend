@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Keycloak from 'keycloak-js';
+import { UserProfile } from './user-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class KeycloakService {
   constructor() { }
 
   private keyCloak :Keycloak | undefined;
+  private profile :UserProfile | undefined;
 
   get keyCloakFn(){
     if(!this.keyCloak){
@@ -27,6 +29,10 @@ export class KeycloakService {
     return this.keyCloak;
   }
 
+  get userProfile() : UserProfile | undefined {
+    return this.profile;
+  }
+
   async init(){
     console.log("authenticationg user . . .");
     const authenticated = await this.keyCloakFn?.init({
@@ -35,8 +41,16 @@ export class KeycloakService {
 
     if(authenticated){
       console.log("user authenticated successfully . . .");
+      this.profile = (await this.keyCloakFn?.loadUserProfile) as UserProfile;
+      this.profile.token=this.keyCloak?.token;
     }
+  }
 
+  login(){
+    return this.keyCloakFn?.login();
+  }
 
+  logout(){
+    return this.keyCloakFn?.logout({redirectUri:"http://localhost:4200"});
   }
 }
