@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { KeycloakService } from './keycloak/keycloak.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export function kcFactory(kcService:KeycloakService){
   return () => kcService.init();
@@ -13,7 +14,8 @@ export function kcFactory(kcService:KeycloakService){
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

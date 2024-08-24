@@ -43,6 +43,11 @@ export class KeycloakService {
       console.log("user authenticated successfully . . .");
       this.profile = (await this.keyCloakFn?.loadUserProfile) as UserProfile;
       this.profile.token=this.keyCloak?.token;
+      console.log("email "+this.profile.email);
+      console.log("firstName "+this.profile.firstName);
+      console.log("lastName "+this.profile.lastName);
+      console.log("username "+this.profile.username);
+      console.log("token "+this.profile.token);
     }
   }
 
