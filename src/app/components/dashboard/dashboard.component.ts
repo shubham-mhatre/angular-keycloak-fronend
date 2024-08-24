@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/services/dashboard.service';
+import { DashboardData } from 'src/app/interfaces/DashboardData';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,16 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dashboardService:DashboardService) { }
 
-  totalGroups = 10; // Replace with actual data
-  totalCompanies = 5; // Replace with actual data
-  totalLocations = 8; // Replace with actual data
-  totalBranches = 3; // Replace with actual data
-  totalDivisions = 4; // Replace with actual data
-  totalUsers = 50; // Replace with actual data
+  totalGroups = 0;
+  totalCompanies = 0;
+  totalLocations = 0;
+  totalBranches = 0;
+  totalDivisions = 0;
+  totalUsers = 0;
 
   ngOnInit(): void {
+    this.dashboardService.getDashboardData().subscribe((resp: DashboardData) => {
+      this.totalGroups = resp.totalNoOfGroups;
+      this.totalCompanies = resp.totalNoOfCompany;
+      this.totalLocations = resp.totalNoOfLocation;
+      this.totalBranches = resp.totalNoOfBranch;
+      this.totalDivisions = resp.totalNoOfDivision;
+      this.totalUsers = resp.totalNoOfUser;
+    });
   }
 
 }

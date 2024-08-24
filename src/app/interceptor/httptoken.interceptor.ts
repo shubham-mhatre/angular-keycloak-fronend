@@ -16,6 +16,7 @@ export class HttptokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.keyCloakService.keyCloakFn.token;
+    debugger;
     if (token) {
       const authReq = request.clone({
         headers: new HttpHeaders({

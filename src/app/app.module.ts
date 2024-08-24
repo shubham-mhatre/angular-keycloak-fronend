@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { KeycloakService } from './keycloak/keycloak.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttptokenInterceptor } from './interceptor/httptoken.interceptor';
 
 export function kcFactory(kcService:KeycloakService){
   return () => kcService.init();
@@ -21,9 +23,15 @@ export function kcFactory(kcService:KeycloakService){
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttptokenInterceptor,
+      multi: true
+    },
     {
       provide:APP_INITIALIZER,//as we want it to run when our app boostrap.
       deps:[KeycloakService],//it dependent on the service that we have created so add deps.
