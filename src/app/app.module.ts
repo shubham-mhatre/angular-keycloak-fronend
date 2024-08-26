@@ -9,6 +9,8 @@ import { KeycloakService } from './keycloak/keycloak.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttptokenInterceptor } from './interceptor/httptoken.interceptor';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { FormsModule } from '@angular/forms';
 
 export function kcFactory(kcService:KeycloakService){
   return () => kcService.init();
@@ -17,14 +19,16 @@ export function kcFactory(kcService:KeycloakService){
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserRegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {

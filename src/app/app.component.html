@@ -1,6 +1,11 @@
 
 <mat-toolbar class="navbar navbar-dark" color="primary">
   <span>Keycloak DEMO</span>
+  <span class="spacer"></span>
+  <a mat-button [routerLink]="['/register']" class="nav-link">
+    <mat-icon>person_add</mat-icon>
+    User Registration
+  </a>
 </mat-toolbar> 
 
 <router-outlet></router-outlet>

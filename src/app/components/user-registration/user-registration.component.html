@@ -1,0 +1,23 @@
+<!-- registration.component.html -->
+<div class="registration-container">
+    <h2>Add User</h2>
+    <form (ngSubmit)="register()" class="registration-form">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" [(ngModel)]="user.email" name="email" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="First Name" [(ngModel)]="user.firstName" name="firstName" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName" required>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" class="full-width">Save</button>
+    </form>
+  </div>
+  
