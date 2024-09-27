@@ -23,6 +23,7 @@ export class UserRegistrationComponent implements OnInit {
     this.userRegistrationService.registerUser(this.user).subscribe(response => {
       console.log("response "+response);
       console.log('User onboarded to application');
+      alert(response.message);
     }, error => {
       console.error('Error registering user', error);
     });

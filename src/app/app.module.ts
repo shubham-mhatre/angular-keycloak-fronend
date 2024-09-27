@@ -10,7 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttptokenInterceptor } from './interceptor/httptoken.interceptor';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function kcFactory(kcService:KeycloakService){
   return () => kcService.init();
@@ -28,7 +28,8 @@ export function kcFactory(kcService:KeycloakService){
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
